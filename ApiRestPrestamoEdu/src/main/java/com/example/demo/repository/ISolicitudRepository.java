@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface ISolicitudRepository extends JpaRepository<Solicitud, Integer> {
 
 	@Procedure(name = "registrarSolicitud") // Asegúrate de que el nombre sea correcto
-	void registrarSolicitud(Integer p_alumno_codUsuario, Integer p_material_cod, int p_cantidad);
+	void registrarSolicitud(int alumnoCodUsuario, int materialCod, int cantidad);
 
 	@Procedure(name = "actualizarEstadoSolicitud") // Asegúrate de que el nombre sea correcto
 	void actualizarEstadoSolicitud(Integer p_solicitud_id, String p_nuevo_estado);

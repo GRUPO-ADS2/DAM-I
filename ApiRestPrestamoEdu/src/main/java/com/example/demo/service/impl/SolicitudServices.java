@@ -5,8 +5,11 @@ import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Material;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
+import com.example.demo.repository.IAlumnoRepository;
 import com.example.demo.repository.IMaterialRepository;
 import com.example.demo.repository.IPrestamoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import com.example.demo.repository.ISolicitudRepository;
 import com.example.demo.service.ISolicitudServices;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,15 +28,16 @@ import java.util.Optional;
 public class SolicitudServices implements ISolicitudServices {
 
     ISolicitudRepository _solicitudRepository;
+    IAlumnoRepository _alumnoRepository;
     IMaterialRepository _materialRepository;
 
     @Autowired
-    public SolicitudServices(ISolicitudRepository solicitudRepository,IMaterialRepository materialRepository){
+    public SolicitudServices(ISolicitudRepository solicitudRepository,IAlumnoRepository alumnoRepository,IMaterialRepository materialRepository){
         _solicitudRepository = solicitudRepository;
+        _alumnoRepository = alumnoRepository;
         _materialRepository = materialRepository;
     }
     @Override
-    @EntityGraph(attributePaths = {"material", "alumno"})
     public List<Solicitud> GetAllSolicitudes() {
         return _solicitudRepository.findAll();
     }
@@ -53,12 +58,17 @@ public class SolicitudServices implements ISolicitudServices {
     }
 
     @Override
-    public void registrarSolicitud(SoliDTO solicitudDTO) {
-        _solicitudRepository.registrarSolicitud(
-                solicitudDTO.getAlumnoCodUsuario(),
-                solicitudDTO.getMaterialCod(),
-                solicitudDTO.getCantidad());
-
+    @Transactional
+    public void registrarSolicitud(SoliDTO soliDTO) {
+        try {
+            _solicitudRepository.registrarSolicitud(
+                    soliDTO.getAlumnoCodUsuario(),
+                    soliDTO.getMaterialCod(),
+                    soliDTO.getCantidad()
+            );
+        } catch (Exception e) {
+            System.err.println("Error al registrar la solicitud: " + e.getMessage());
+        }
     }
     @Override
     public void actualizarEstadoSolicitud(Integer solicitudId, String nuevoEstado) {

@@ -28,16 +28,9 @@ public class SolicitudController {
     }
 
     @PostMapping("/solicitud")
-    public ResponseEntity<Solicitud> registrarSolicitud(@RequestBody SoliDTO solicitudDTO) {
-        if (solicitudDTO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        try {
-            solicitudServices.registrarSolicitud(solicitudDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<String> registrarSolicitud(@RequestBody SoliDTO soliDTO) {
+        solicitudServices.registrarSolicitud(soliDTO);
+        return ResponseEntity.ok("Solicitud procesada");
     }
     /*
     @PostMapping("/solicitud")
