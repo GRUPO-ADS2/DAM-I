@@ -11,9 +11,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class SoliDTO {
-    private Integer idSolicitud;
-    private Integer cantidad;
-    private String estado;
-    private Material material;
-    private Alumno alumno;
+    private int alumnoCodUsuario;
+    private int materialCod;
+    private int cantidad;
 }

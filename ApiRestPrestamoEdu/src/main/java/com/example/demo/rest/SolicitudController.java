@@ -1,6 +1,7 @@
 package com.example.demo.rest;
 
 import com.example.demo.dto.SoliAndPresDTO;
+import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
 import com.example.demo.service.ISolicitudServices;
@@ -27,6 +28,19 @@ public class SolicitudController {
     }
 
     @PostMapping("/solicitud")
+    public ResponseEntity<Solicitud> registrarSolicitud(@RequestBody SoliDTO solicitudDTO) {
+        if (solicitudDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        try {
+            solicitudServices.registrarSolicitud(solicitudDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+/*
+    @PostMapping("/solicitud")
     public Solicitud saveSolicitud(@RequestBody Solicitud entity) {
         return solicitudServices.SaveSolicitud(entity);
     }
@@ -38,6 +52,15 @@ public class SolicitudController {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }*/
+@PutMapping("/solicitud/{id}")
+    public ResponseEntity<?> actualizarEstadoSolicitud(@PathVariable Integer id, @RequestParam String nuevoEstado) {
+        try {
+            solicitudServices.actualizarEstadoSolicitud(id, nuevoEstado);
+            return ResponseEntity.ok().body("{success: true}");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar el estado: " + e.getMessage());
         }
     }
 
@@ -51,8 +74,4 @@ public class SolicitudController {
         }
     }
 
-    @PostMapping("/solicitud/prestamo")
-    public Solicitud saveSolicitudAndPrestamo(@RequestBody SoliAndPresDTO soliAndPresDTO) {
-        return solicitudServices.SaveSolicitudAndPrestamo(soliAndPresDTO);
-    }
 }
