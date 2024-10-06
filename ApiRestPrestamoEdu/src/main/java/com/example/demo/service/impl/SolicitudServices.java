@@ -8,6 +8,7 @@ import com.example.demo.models.Solicitud;
 import com.example.demo.repository.IMaterialRepository;
 import com.example.demo.repository.IPrestamoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.ISolicitudRepository;
@@ -31,6 +32,7 @@ public class SolicitudServices implements ISolicitudServices {
         _materialRepository = materialRepository;
     }
     @Override
+    @EntityGraph(attributePaths = {"material", "alumno"})
     public List<Solicitud> GetAllSolicitudes() {
         return _solicitudRepository.findAll();
     }
@@ -56,33 +58,7 @@ public class SolicitudServices implements ISolicitudServices {
                 solicitudDTO.getAlumnoCodUsuario(),
                 solicitudDTO.getMaterialCod(),
                 solicitudDTO.getCantidad());
-        /* Buscar el material en la base de datos
-        Optional<Material> materialOpt = _materialRepository.findById(solicitudDTO.getMaterial().getCodMaterial());
 
-        if (!materialOpt.isPresent()) {
-            throw new IllegalArgumentException("Material no encontrado");
-        }
-
-        Material material = materialOpt.get();
-
-        // Verificar si hay suficiente stock
-        if (material.getStock() < solicitudDTO.getCantidad()) {
-            throw new IllegalArgumentException("Stock insuficiente para el material solicitado");
-        }
-
-        // Restar del stock del material
-        material.setStock(material.getStock() - solicitudDTO.getCantidad());
-        _materialRepository.save(material);
-
-        // Crear una nueva solicitud
-        Solicitud nuevaSolicitud = new Solicitud();
-        nuevaSolicitud.setAlumno(solicitudDTO.getAlumno());
-        nuevaSolicitud.setMaterial(material);
-        nuevaSolicitud.setCantidad(solicitudDTO.getCantidad());
-        nuevaSolicitud.setEstado("Pendiente");
-
-        // Guardar la solicitud en la base de datos
-        return _solicitudRepository.save(nuevaSolicitud);*/
     }
     @Override
     public void actualizarEstadoSolicitud(Integer solicitudId, String nuevoEstado) {
@@ -114,7 +90,7 @@ public class SolicitudServices implements ISolicitudServices {
         }
     }
 
-
+/*
     @PostConstruct
     public void testProcedure() {
         // Prueba el procedimiento almacenado con valores de ejemplo
@@ -131,7 +107,7 @@ public class SolicitudServices implements ISolicitudServices {
             e.printStackTrace();
             System.out.println("Error al ejecutar el procedimiento.");
         }
-    }
+    }*/
 	@Override
 	public void solicitarPrestamo(Integer p_alumno_codUsuario, Integer p_material_cod, int p_cantidad) {
 		// TODO Auto-generated method stub

@@ -39,7 +39,7 @@ public class SolicitudController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-/*
+    /*
     @PostMapping("/solicitud")
     public Solicitud saveSolicitud(@RequestBody Solicitud entity) {
         return solicitudServices.SaveSolicitud(entity);
