@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/r4ureouceglw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rzuzz6fy3b4"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="#EDF0EF"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/r58rprubpej5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
+
+                <ImageView
+                    android:id="@+id/imagenPersona"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/rxyogf1kwcwk"
+                android:textColor="#273330"
+                android:textSize="24sp"
+                android:layout_marginBottom="46dp"
+                android:layout_marginStart="55dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Hola, Jhon Quiñones"
+                />
+            <TextView
+                android:id="@+id/riny85pjk5da"
+                android:textColor="#273330"
+                android:textSize="20sp"
+                android:layout_marginBottom="48dp"
+                android:layout_marginStart="17dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Registra una solicitud:"
+                />
+            <Button
+                android:id="@+id/btnSol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/botonINI"
+                android:text="SOLICITUD"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/rjgg7wig3g7"
+                android:textColor="#273330"
+                android:textSize="20sp"
+                android:layout_marginBottom="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Sigue tus préstamos:"
+                />
+            <Button
+                android:id="@+id/btnSeg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/botonINI"
+                android:text="SEGUIR"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/rjucwwgebah"
+                android:textColor="#273330"
+                android:textSize="20sp"
+                android:layout_marginBottom="49dp"
+                android:layout_marginStart="19dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Registra un préstamo"
+                />
+            <Button
+                android:id="@+id/btnReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/botonINI"
+                android:text="REGISTRAR"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
