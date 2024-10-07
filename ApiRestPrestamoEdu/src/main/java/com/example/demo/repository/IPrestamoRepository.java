@@ -12,10 +12,10 @@ import com.example.demo.models.Prestamo;
 public interface IPrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	@Procedure(name = "registrarPrestamo")
 	void registrarPrestamo(int solicitudId, LocalDateTime fechaPrestamo);
-	@Procedure
+	@Procedure(name = "registrarDevolucion")
 	void registrarDevolucion(Integer p_prestamo_id, LocalDateTime p_fecha_devolucion);
 	@Procedure
 	void registrarPenalizacion(Integer p_prestamo_id, LocalDateTime p_fecha_penalizacion, String p_descripcion);
-	@Procedure
-	void actualizarPrestamo(Integer p_prestamo_id, LocalDateTime p_nueva_fecha_prestamo);
+	@Procedure(name = "actualizarPrestamo")
+	void actualizarPrestamo(int prestamoId, LocalDateTime nuevaFechaPrestamo);
 }

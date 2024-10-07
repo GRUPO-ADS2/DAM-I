@@ -43,6 +43,14 @@ public class PrestamoServices implements IPrestamoServices {
     }
 
     @Override
+    @Transactional
+    public void actualizarPrestamo(int prestamoId, LocalDateTime _nuevaFechaPrestamo) {
+        LocalDateTime nuevaFechaPrestamo = LocalDateTime.now();
+        _prestamoRepository.actualizarPrestamo(prestamoId, nuevaFechaPrestamo);
+    }
+
+
+    @Override
     public Prestamo FindPrestamoById(int id) {
         Optional<Prestamo> rowInDB = _prestamoRepository.findById(id);
         if (rowInDB.isPresent())

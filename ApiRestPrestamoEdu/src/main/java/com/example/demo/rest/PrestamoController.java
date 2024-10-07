@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -34,14 +35,16 @@ public class PrestamoController {
     }
 
     @PutMapping("/prestamo/{id}")
-    public ResponseEntity<Integer> updatePrestamo(@PathVariable Integer id, @RequestBody Prestamo prestamo) {
-        Integer updated = prestamoServices.updatePrestamo(id, prestamo);
-        if (updated == 1) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> actualizarPrestamo(@PathVariable Integer id) {
+        try {
+            // Llamar al servicio para actualizar el préstamo usando la fecha actual del sistema
+            prestamoServices.actualizarPrestamo(id, LocalDateTime.now());
+            return ResponseEntity.ok().body("Prestamo actualizado");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar el estado: " + e.getMessage());
         }
     }
+
 
     @DeleteMapping("/prestamo/{id}")
     public ResponseEntity<Integer> deletePrestamo(@PathVariable Integer id) {
