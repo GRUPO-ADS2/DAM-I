@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.models.Prestamo;
 @Repository
 public interface IPrestamoRepository extends JpaRepository<Prestamo, Integer> {
-	@Procedure
-	void registrarPrestamo(Integer p_solicitud_id, LocalDateTime p_fecha_prestamo);
+	@Procedure(name = "registrarPrestamo")
+	void registrarPrestamo(int solicitudId, LocalDateTime fechaPrestamo);
 	@Procedure
 	void registrarDevolucion(Integer p_prestamo_id, LocalDateTime p_fecha_devolucion);
 	@Procedure

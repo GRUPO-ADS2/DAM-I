@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PresDTO {
-    private Integer idPrestamo;
+    private int solicitudId;
     private LocalDateTime fechaPrestamo;
-    private String estado;
-    private LocalDateTime fechaDevReal;
-    private Solicitud solicitud;
 }

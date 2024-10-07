@@ -1,5 +1,7 @@
 package com.example.demo.rest;
 
+import com.example.demo.dto.PresDTO;
+import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
 import com.example.demo.service.IPrestamoServices;
@@ -26,8 +28,9 @@ public class PrestamoController {
     }
 
     @PostMapping("/prestamo")
-    public Prestamo saveSolicitud(@RequestBody Prestamo entity) {
-        return prestamoServices.SavePrestamo(entity);
+    public ResponseEntity<String> registrarPrestamo(@RequestBody PresDTO presDTO) {
+        prestamoServices.registrarPrestamo(presDTO);
+        return ResponseEntity.ok("Prestamo registrado exitosamente");
     }
 
     @PutMapping("/prestamo/{id}")

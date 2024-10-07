@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.PresDTO;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
 import com.example.demo.repository.IPrestamoRepository;
@@ -7,7 +8,9 @@ import com.example.demo.repository.ISolicitudRepository;
 import com.example.demo.service.IPrestamoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +28,18 @@ public class PrestamoServices implements IPrestamoServices {
     }
 
     @Override
-    public Prestamo SavePrestamo(Prestamo entity) {
-        Prestamo prestamoSaved = _prestamoRepository.save(entity);
-        return prestamoSaved;
+    @Transactional
+    public void registrarPrestamo(PresDTO presDTO) {
+        try {
+            LocalDateTime fechaPrestamoActual = LocalDateTime.now();
+
+            _prestamoRepository.registrarPrestamo(
+                    presDTO.getSolicitudId(),
+                    fechaPrestamoActual
+            );
+        } catch (Exception e) {
+            System.err.println("Error al registrar el prestamo: " + e.getMessage());
+        }
     }
 
     @Override
