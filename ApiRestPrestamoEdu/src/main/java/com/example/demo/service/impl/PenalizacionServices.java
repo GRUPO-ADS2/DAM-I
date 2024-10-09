@@ -1,13 +1,17 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.PenaDTO;
 import com.example.demo.models.Penalizacion;
 import com.example.demo.models.Prestamo;
 import com.example.demo.repository.IPenalizacionRepository;
 import com.example.demo.repository.IPrestamoRepository;
 import com.example.demo.service.IPenalizacionServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +31,19 @@ public class PenalizacionServices implements IPenalizacionServices {
     }
 
     @Override
-    public Penalizacion SavePenalizacion(Penalizacion entity) {
-        Penalizacion penalizacionSaved = _penalizacionRepository.save(entity);
-        return penalizacionSaved;
+    @Transactional
+    public void registrarPenalizacion(PenaDTO penaDTO) {
+        try {
+            LocalDateTime _fechaPenalizacion = LocalDateTime.now();
+
+            _penalizacionRepository.registrarPenalizacion(
+                    penaDTO.getPrestamoId(),
+                    _fechaPenalizacion,
+                    penaDTO.getDescripcion()
+            );
+        } catch (Exception e) {
+            System.err.println("Error al registrar la penalizacion: " + e.getMessage());
+        }
     }
 
     @Override

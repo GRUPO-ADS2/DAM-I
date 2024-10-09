@@ -1,5 +1,7 @@
 package com.example.demo.rest;
 
+import com.example.demo.dto.PenaDTO;
+import com.example.demo.dto.PresDTO;
 import com.example.demo.models.Penalizacion;
 import com.example.demo.models.Prestamo;
 import com.example.demo.service.IPenalizacionServices;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,8 +32,13 @@ public class PenalizacionController {
     }
 
     @PostMapping("/penalizacion")
-    public Penalizacion savePenalizacion(@RequestBody Penalizacion entity) {
-        return penalizacionServices.SavePenalizacion(entity);
+    public ResponseEntity<String> registrarPenalizacion(@RequestBody PenaDTO penaDTO) {
+        try {
+            penalizacionServices.registrarPenalizacion(penaDTO);
+            return ResponseEntity.ok("Prestamo penalizado exitosamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al registrar el préstamo: " + e.getMessage());
+        }
     }
 
     @PutMapping("/penalizacion/{id}")

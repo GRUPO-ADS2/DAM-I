@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.PresDTO;
-import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Prestamo;
 
 import java.time.LocalDateTime;
@@ -12,6 +11,6 @@ public interface IPrestamoServices {
     void registrarPrestamo(PresDTO prestamoDTO);
     void actualizarPrestamo(int prestamoId, LocalDateTime nuevaFechaPrestamo);
     Prestamo FindPrestamoById(int id);
-    Integer updatePrestamo(Integer id, Prestamo prestamo);
+    void registrarDevolucion(int prestamoId, LocalDateTime fechaDevolucion);
     Integer deletePrestamo(Integer id);
 }

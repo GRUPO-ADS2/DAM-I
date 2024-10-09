@@ -60,18 +60,20 @@ public class PrestamoServices implements IPrestamoServices {
     }
 
     @Override
-    public Integer updatePrestamo(Integer id, Prestamo prestamo) {
-        Optional<Prestamo> existingPrestamo = _prestamoRepository.findById(id);
-        if (existingPrestamo.isPresent()) {
-            Prestamo PrestamoToUpdate = existingPrestamo.get();
-            PrestamoToUpdate.setFechaPrestamo(prestamo.getFechaPrestamo());
-            PrestamoToUpdate.setEstado(prestamo.getEstado());
-            _prestamoRepository.save(PrestamoToUpdate);
-            return 1;
-        } else {
-            return 0;
+    @Transactional
+    public void registrarDevolucion(int prestamoId, LocalDateTime fechaDevolucion) {
+        try {
+            LocalDateTime _fechaDevolucion = LocalDateTime.now();
+
+            _prestamoRepository.registrarDevolucion(
+                    prestamoId,_fechaDevolucion
+            );
+        } catch (Exception e) {
+            System.err.println("Error al registrar la devolución del prestamo: "
+                    + e.getMessage());
         }
     }
+
 
     @Override
     public Integer deletePrestamo(Integer id) {

@@ -13,9 +13,7 @@ public interface IPrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	@Procedure(name = "registrarPrestamo")
 	void registrarPrestamo(int solicitudId, LocalDateTime fechaPrestamo);
 	@Procedure(name = "registrarDevolucion")
-	void registrarDevolucion(Integer p_prestamo_id, LocalDateTime p_fecha_devolucion);
-	@Procedure
-	void registrarPenalizacion(Integer p_prestamo_id, LocalDateTime p_fecha_penalizacion, String p_descripcion);
+	void registrarDevolucion(int prestamoId, LocalDateTime fechaDevolucion);
 	@Procedure(name = "actualizarPrestamo")
 	void actualizarPrestamo(int prestamoId, LocalDateTime nuevaFechaPrestamo);
 }

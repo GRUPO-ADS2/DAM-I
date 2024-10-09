@@ -1,6 +1,5 @@
 package com.example.demo.rest;
 
-import com.example.demo.dto.SoliAndPresDTO;
 import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
@@ -29,24 +28,14 @@ public class SolicitudController {
 
     @PostMapping("/solicitud")
     public ResponseEntity<String> registrarSolicitud(@RequestBody SoliDTO soliDTO) {
-        solicitudServices.registrarSolicitud(soliDTO);
-        return ResponseEntity.ok("Solicitud procesada");
-    }
-    /*
-    @PostMapping("/solicitud")
-    public Solicitud saveSolicitud(@RequestBody Solicitud entity) {
-        return solicitudServices.SaveSolicitud(entity);
+        try {
+            solicitudServices.registrarSolicitud(soliDTO);
+            return ResponseEntity.ok("Solicitud registrada");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al registrar la solicitud: " + e.getMessage());
+        }
     }
 
-    @PutMapping("/solicitud/{id}")
-    public ResponseEntity<Integer> updateSolicitud(@PathVariable Integer id, @RequestBody Solicitud solicitud) {
-        Integer updated = solicitudServices.updateSolicitud(id, solicitud);
-        if (updated == 1) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }*/
 @PutMapping("/solicitud/{id}")
     public ResponseEntity<?> actualizarEstadoSolicitud(@PathVariable Integer id, @RequestParam String nuevoEstado) {
         try {

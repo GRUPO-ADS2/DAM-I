@@ -30,10 +30,22 @@ public class PrestamoController {
 
     @PostMapping("/prestamo")
     public ResponseEntity<String> registrarPrestamo(@RequestBody PresDTO presDTO) {
-        prestamoServices.registrarPrestamo(presDTO);
-        return ResponseEntity.ok("Prestamo registrado exitosamente");
+        try {
+            prestamoServices.registrarPrestamo(presDTO);
+            return ResponseEntity.ok("Prestamo registrado exitosamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al registrar el préstamo: " + e.getMessage());
+        }
     }
-
+    @PostMapping("/devolucion/{id}")
+    public ResponseEntity<String> registrarDevolucion(@PathVariable Integer id) {
+        try {
+            prestamoServices.registrarDevolucion(id, LocalDateTime.now());
+            return ResponseEntity.ok("Prestamo devuelto exitosamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al devolver el préstamo: " + e.getMessage());
+        }
+    }
     @PutMapping("/prestamo/{id}")
     public ResponseEntity<?> actualizarPrestamo(@PathVariable Integer id) {
         try {

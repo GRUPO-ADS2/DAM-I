@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.SoliAndPresDTO;
 import com.example.demo.dto.SoliDTO;
 import com.example.demo.models.Material;
 import com.example.demo.models.Prestamo;
@@ -99,30 +98,5 @@ public class SolicitudServices implements ISolicitudServices {
             return 0;
         }
     }
-
-/*
-    @PostConstruct
-    public void testProcedure() {
-        // Prueba el procedimiento almacenado con valores de ejemplo
-        try {
-            Integer p_alumno_codUsuario = 1; // Código de usuario del alumno
-            Integer p_material_cod = 100001; // Código de material
-            int p_cantidad = 1; // Cantidad de material solicitado
-
-            // Llamada al procedimiento almacenado
-            _solicitudRepository.registrarSolicitud(p_alumno_codUsuario, p_material_cod, p_cantidad);
-
-            System.out.println("Procedure ejecutado correctamente.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al ejecutar el procedimiento.");
-        }
-    }*/
-	@Override
-	public void solicitarPrestamo(Integer p_alumno_codUsuario, Integer p_material_cod, int p_cantidad) {
-		// TODO Auto-generated method stub
-	}
-
-
 
 }
