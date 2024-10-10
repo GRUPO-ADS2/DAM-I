@@ -8,21 +8,23 @@
     <ScrollView
         android:id="@+id/r4ureouceglw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
         <LinearLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             android:orientation="vertical">
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rzuzz6fy3b4"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:background="#EDF0EF"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
             <LinearLayout
                 android:id="@+id/r58rprubpej5"
@@ -32,36 +34,37 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="16dp">
 
-                <ImageView
-                    android:id="@+id/imagenPersona"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginTop="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bar" />
+                <Button
+                    android:id="@+id/btnUser"
+                    style="?attr/materialIconButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    app:icon="@drawable/user"
+                    app:iconTint="@color/black" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/rxyogf1kwcwk"
-                android:textColor="#273330"
-                android:textSize="24sp"
-                android:layout_marginBottom="46dp"
-                android:layout_marginStart="55dp"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginBottom="46dp"
                 android:text="Hola, Jhon Quiñones"
-                />
+                android:textColor="#273330"
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/riny85pjk5da"
-                android:textColor="#273330"
-                android:textSize="20sp"
-                android:layout_marginBottom="48dp"
-                android:layout_marginStart="17dp"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginBottom="48dp"
                 android:text="Registra una solicitud:"
-                />
+                android:textColor="#273330"
+                android:textSize="20sp" />
+
             <Button
                 android:id="@+id/btnSol"
                 android:layout_width="match_parent"
@@ -71,20 +74,23 @@
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/botonINI"
                 android:text="SOLICITUD"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/rjgg7wig3g7"
-                android:textColor="#273330"
-                android:textSize="20sp"
-                android:layout_marginBottom="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="48dp"
                 android:text="Sigue tus préstamos:"
-                />
+                android:textColor="#273330"
+                android:textSize="20sp" />
+
             <Button
                 android:id="@+id/btnSeg"
                 android:layout_width="match_parent"
@@ -94,20 +100,23 @@
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/botonINI"
                 android:text="SEGUIR"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/rjucwwgebah"
-                android:textColor="#273330"
-                android:textSize="20sp"
-                android:layout_marginBottom="49dp"
-                android:layout_marginStart="19dp"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginBottom="49dp"
                 android:text="Registra un préstamo"
-                />
+                android:textColor="#273330"
+                android:textSize="20sp" />
+
             <Button
                 android:id="@+id/btnReg"
                 android:layout_width="match_parent"
@@ -117,6 +126,8 @@
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/botonINI"
                 android:text="REGISTRAR"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

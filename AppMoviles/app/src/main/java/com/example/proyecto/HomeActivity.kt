@@ -14,6 +14,7 @@ class HomeActivity : AppCompatActivity(){
     private lateinit var btnSol: Button
     private lateinit var btnSeg: Button
     private lateinit var btnReg: Button
+    private lateinit var btnUser: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity(){
         btnSol=findViewById(R.id.btnSol)
         btnSeg=findViewById(R.id.btnSeg)
         btnReg=findViewById(R.id.btnReg)
+        btnUser=findViewById(R.id.btnUser)
 
         btnSol.setOnClickListener {
             var intent= Intent(this,SolicitudActivity::class.java)
@@ -41,6 +43,9 @@ class HomeActivity : AppCompatActivity(){
             var intent= Intent(this,RegistrarActivity::class.java)
             startActivity(intent)
         }
-
+        btnUser.setOnClickListener {
+            var intent= Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
