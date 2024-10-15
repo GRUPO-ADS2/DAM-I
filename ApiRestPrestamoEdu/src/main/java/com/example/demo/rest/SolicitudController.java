@@ -1,6 +1,8 @@
 package com.example.demo.rest;
 
 import com.example.demo.dto.SoliDTO;
+import com.example.demo.models.Alumno;
+import com.example.demo.models.Material;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
 import com.example.demo.service.ISolicitudServices;
@@ -20,6 +22,12 @@ public class SolicitudController {
 
     @GetMapping("/solicitudes")
     public List<Solicitud> getAll() {return solicitudServices.GetAllSolicitudes();}
+
+    @GetMapping("/materiales")
+    public List<Material> getAllMateriales() {return solicitudServices.GetAllMateriales();}
+
+    @GetMapping("/alumnos")
+    public List<Alumno> getAllAlumnos() {return solicitudServices.GetAllAlumnos();}
 
     @GetMapping("/solicitud/{id}")
     public Solicitud getAll(@PathVariable int id) {
