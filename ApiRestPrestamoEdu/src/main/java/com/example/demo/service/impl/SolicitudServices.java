@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dto.SoliDTO;
+import com.example.demo.models.Alumno;
 import com.example.demo.models.Material;
 import com.example.demo.models.Prestamo;
 import com.example.demo.models.Solicitud;
@@ -39,6 +40,16 @@ public class SolicitudServices implements ISolicitudServices {
     @Override
     public List<Solicitud> GetAllSolicitudes() {
         return _solicitudRepository.findAll();
+    }
+
+    @Override
+    public List<Material> GetAllMateriales() {
+        return _materialRepository.findAll();
+    }
+
+    @Override
+    public List<Alumno> GetAllAlumnos() {
+        return _alumnoRepository.findAll();
     }
 
     @Override
