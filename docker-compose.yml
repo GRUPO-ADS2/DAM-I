@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      URL_BASE: jdbc:mysql://innovaschool:3306/bdinnovaschool?createDatabaseIfNotExist=true&serverTimezone=UTC
+      URL_BASE_MYSQL: jdbc:mysql://innovaschool:3306/bdinnovaschool?createDatabaseIfNotExist=true&serverTimezone=UTC
       USER_MYSQL: root
       PASS_MYSQL: mysql
     restart: always
@@ -15,15 +15,18 @@ services:
       innovaschool:
           condition: service_healthy
   innovaschool:
-    image: mysql:8.0.33 
+    build:
+      context: ./mysql
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_DATABASE: bdinnovaschool
     restart: always
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 10s
+      timeout: 20s
       retries: 10

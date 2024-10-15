@@ -1,0 +1,36 @@
+<div class="container-fluid p-4 g-8">
+    <div class="content mx-5">
+        <div class="card mx-5 w-auto">
+            <div class="card-header">
+                <div class="h5 text-info"><strong>SOLICITUDES</strong></div>
+            </div>
+            <div class="card-body p-0">
+                <div class="tabla-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>idSolicitud</th>
+                                <th>cantidad</th>
+                                <th>estado</th>
+                                <th>material</th>
+                                <th>alumno</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of solicitudes; track $index) {
+                                <tr>
+                                    <td>{{item.idSolicitud}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.estado}}</td>
+                                    <td>{{item.material.nombre}}</td>
+                                    <td>{{item.alumno.nombresApellidos}}</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid p-4 g-8">
+    <div class="content mx-5">
+        <div class="card mx-5 w-auto">
+            <div class="card-header">
+                <div class="h5 text-warning"><strong>PRESTAMOS</strong></div>
+            </div>
+            <div class="card-body p-0">
+                <div class="tabla-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>idPrestamo</th>
+                                <th>fechaPrestamo</th>
+                                <th>estado</th>
+                                <th>fechaDevReal</th>
+                                <th>idSolicitud</th>
+                                <th>material</th>
+                                <th>alumno</th>
+                            </tr>   
+                        </thead>
+                        <tbody>
+                            @for (item of prestamos; track $index) {
+                                <tr>
+                                    <td>{{item.idPrestamo}}</td>
+                                    <td>{{item.fechaPrestamo}}</td>
+                                    <td>{{item.estado}}</td>
+                                    <td>{{item.fechaDevReal}}</td>
+                                    <td>{{item.solicitud.idSolicitud}}</td>
+                                    <td>{{item.solicitud.material.nombre}}</td>
+                                    <td>{{item.solicitud.alumno.nombresApellidos}}</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
