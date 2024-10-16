@@ -131,7 +131,7 @@
                 android:paddingTop="20dp">
 
                 <Button
-                    android:id="@+id/textButton"
+                    android:id="@+id/btnSumar"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                     android:textColor="@color/text1" />
 
                 <Button
-                    android:id="@+id/textButton"
+                    android:id="@+id/btnRestar"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/textButton"
+                android:id="@+id/btnElegir"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

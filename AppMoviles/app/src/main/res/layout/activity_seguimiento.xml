@@ -51,39 +51,13 @@
                     android:layout_width="wrap_content"
                     android:text="Vigentes :)"
                     />
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/r9qv1s3pc6c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="#F6F8F8"
-                    android:paddingVertical="20dp"
-                    android:paddingHorizontal="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/r4ih7u0ajhec"
-                        android:textColor="#4F4F4F"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Solicitud 001 - Laptop                                           Fecha de inicio: 30/09                                                                    Fecha de retorno: 7/10"
 
-                        />
-                    <TextView
-                        android:id="@+id/rr9owamj9q1"
-                        android:textColor="#5D57FF"
-                        android:textSize="12sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="Actualizar"
-                        />
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvVigentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp" />
+
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -126,6 +100,13 @@
                     android:layout_width="wrap_content"
                     android:text="No vigentes :("
                     />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNoVigentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp" />
+
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
