@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   apirestprestamoedu:
-    build: apirestprestamoedu
+    image: jhon2226g/apiprestamo_hub:latest
     mem_limit: 512m
     ports:
       - "8080:8080"
@@ -13,13 +13,9 @@ services:
     restart: always
     depends_on:
       innovaschool:
-        condition: service_healthy
-
+          condition: service_healthy
   innovaschool:
-    build:
-      context: ./mysql
-    volumes:
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    image: jhon2226g/apiprestamo_hub:mysql    
     ports:
       - "3307:3306"
     environment:
@@ -28,13 +24,15 @@ services:
       MYSQL_DATABASE: bdinnovaschool
     restart: always
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-
   angularapp:
-    build: ./LISTADOSANGULAR/listadosdb
+    image: jhon2226g/apiprestamo_hub:angular
     ports:
       - "4200:4000"  # Mapea el puerto 4200 del contenedor al puerto 4000 del host
     restart: always
-    
+
+
+
+

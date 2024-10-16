@@ -8,7 +8,7 @@ import { Penalizacion } from '../models/Penalizacion';
   providedIn: 'root'
 })
 export class ListadoService {
-  private urlBase:string = 'http://localhost:8080';
+  private urlBase:string = 'http://20.206.205.20:8080';
   constructor(private http : HttpClient) { }
   
   listarSolicitudes(): Observable<Solicitud[]>{

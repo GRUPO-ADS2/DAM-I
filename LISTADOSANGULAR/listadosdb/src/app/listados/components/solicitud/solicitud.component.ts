@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-solicitud',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [],
   templateUrl: './solicitud.component.html',
   styleUrl: './solicitud.component.css'
 })

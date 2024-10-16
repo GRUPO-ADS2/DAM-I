@@ -4,8 +4,8 @@ import { PenalizacionComponent } from './listados/components/penalizacion/penali
 import { PrestamoComponent } from './listados/components/prestamo/prestamo.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/solicitudes', pathMatch: 'full' },  // Ruta para la página principal
-    { path: 'solicitudes', component: SolicitudComponent },  // Ruta para la página de "About"
-    { path: 'penalizaciones', component: PenalizacionComponent },
-    { path: 'prestamos', component: PrestamoComponent }
+    { path: '', redirectTo: '/listasolicitudes', pathMatch: 'full' },  // Ruta para la página principal
+    { path: 'listasolicitudes', component: SolicitudComponent },  // Ruta para la página de "About"
+    { path: 'listapenalizaciones', component: PenalizacionComponent },
+    { path: 'listaprestamos', component: PrestamoComponent }
 ];

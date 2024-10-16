@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ListadoService } from '../../services/listado.service';
 import { Prestamo } from '../../models/Prestamo';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-prestamo',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './prestamo.component.html',
   styleUrl: './prestamo.component.css'
 })

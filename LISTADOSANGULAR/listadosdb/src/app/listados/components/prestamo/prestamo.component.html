@@ -22,9 +22,9 @@
                             @for (item of prestamos; track $index) {
                                 <tr>
                                     <td>{{item.idPrestamo}}</td>
-                                    <td>{{item.fechaPrestamo}}</td>
+                                    <td>{{item.fechaPrestamo  | date:'dd/MM/yyyy hh:mm a'}}</td>
                                     <td>{{item.estado}}</td>
-                                    <td>{{item.fechaDevReal}}</td>
+                                    <td>{{item.fechaDevReal | date:'dd/MM/yyyy hh:mm a'}}</td>
                                     <td>{{item.solicitud.idSolicitud}}</td>
                                     <td>{{item.solicitud.material.nombre}}</td>
                                     <td>{{item.solicitud.alumno.nombresApellidos}}</td>

@@ -1,1 +1,38 @@
-<p>penalizacion works!</p>
+<div class="container-fluid p-4 g-8">
+    <div class="content mx-5">
+        <div class="card mx-5 w-auto">
+            <div class="card-header">
+                <div class="h5 text-danger"><strong>PENALIZACIONES</strong></div>
+            </div>
+            <div class="card-body p-0">
+                <div class="tabla-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>idPenalizacion</th>
+                                <th>fechaPenalizacion</th>
+                                <th>descripcion</th>
+                                <th>prestamo</th>
+                                <th>material</th>   
+                                <th>alumno</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of penalizaciones; track $index) {
+                                <tr>
+                                    <td>{{item.idPenalizacion}}</td>
+                                    <td>{{item.fechaPenalizacion | date:'dd/MM/yyyy hh:mm a'}}</td>
+                                    <td>{{item.descripcion}}</td>
+                                    <td>{{item.prestamo.idPrestamo}}</td>
+                                    <td>{{item.prestamo.solicitud.material.nombre}}</td>
+                                    <td>{{item.prestamo.solicitud.alumno.nombresApellidos}}</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
