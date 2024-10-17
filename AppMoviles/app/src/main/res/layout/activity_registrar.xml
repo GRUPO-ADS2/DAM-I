@@ -58,71 +58,8 @@
                     android:id="@+id/rvPrestamos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="15dp" />
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/rvleeq87djy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#F6F8F8"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:id="@+id/rvuf4n8mevas"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:layout_weight="1"
-                        android:text="Solicitud 001 - Laptop                                      Alumno: Jhon Quiñones                                                      Id: 202220891"
-                        android:textColor="#4F4F4F"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/rzwqxuf4wo9s"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aceptar"
-                        android:textColor="#5D57FF"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/rii564ex9njg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="271dp"
-                    android:background="#F6F8F8"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="19dp">
-
-                    <TextView
-                        android:id="@+id/rcsxg4gk8hec"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:layout_weight="1"
-                        android:text="Solicitud 002 - Cámara                                           Alumno: Ian Bazán                                                                         Id: 202220123"
-                        android:textColor="#4F4F4F"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/rfw6tbfxi3tl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aceptar"
-                        android:textColor="#5D57FF"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                    android:padding="15dp"
+                    android:paddingBottom="10dp" />
 
                 <Button
                     android:id="@+id/buttonVol"

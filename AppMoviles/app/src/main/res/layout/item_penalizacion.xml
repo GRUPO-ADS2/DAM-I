@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -34,7 +33,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvIdPrestamo"
+                    android:id="@+id/tvIdPrestamoPenalizado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="312434"
@@ -48,7 +47,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvAlumnoPrestamo"
+                    android:id="@+id/tvAlumnoPrestamoPenalizado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="amunlo"
@@ -69,7 +68,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvFechaPrestamo"
+                    android:id="@+id/tvFechaPrestamoPenalizado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
@@ -90,7 +89,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvFechaDevPrestamo"
+                    android:id="@+id/tvFechaDevPrestamoPenalizado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
@@ -101,20 +100,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDescripcionPenalizacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción de la penalización"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnActualizarPrestamo"
+            android:id="@+id/btnPenalizarPrestamo"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:minWidth="60dip"
-            android:text="Actualizar"
+            android:text="Penalizar"
             android:textColor="@color/botonINI"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -10,8 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.proyecto.adaptador.SolicitudAdapter
-import com.example.proyecto.entidad.Solicitud
+import com.example.proyecto.adaptador.MaterialAdapter
+import com.example.proyecto.entidad.Material
 import com.example.proyecto.services.ApiService
 import com.example.proyecto.utils.ApiUtils
 import retrofit2.Call
@@ -58,11 +58,11 @@ class SolicitudActivity : AppCompatActivity() {
     }
 
     fun listado() {
-        apiServices.findAllSolicitudes().enqueue(object : Callback<List<Solicitud>> {
-            override fun onResponse(call: Call<List<Solicitud>>, response: Response<List<Solicitud>>) {
-                val solicitudes = response.body()
-                if (solicitudes != null) {
-                    val adaptador = SolicitudAdapter(solicitudes)
+        apiServices.findAllMateriales().enqueue(object : Callback<List<Material>> {
+            override fun onResponse(call: Call<List<Material>>, response: Response<List<Material>>) {
+                val material = response.body()
+                if (material != null) {
+                    val adaptador = MaterialAdapter(material)
                     rvSolicitudes.layoutManager = LinearLayoutManager(this@SolicitudActivity)  // Usamos el contexto de la actividad
                     rvSolicitudes.adapter = adaptador
                 } else {
@@ -70,7 +70,7 @@ class SolicitudActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<Solicitud>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Material>>, t: Throwable) {
                 showAlert("Error de conexión: ${t.localizedMessage}")
             }
         })

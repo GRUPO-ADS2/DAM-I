@@ -17,6 +17,8 @@ class ViewMaterial(item: View): RecyclerView.ViewHolder(item) {
     var btnRestar: Button
     var btnElegir: Button
 
+    var tvCantidadMaterial: TextView
+
     init{
         tvCodMaterial=item.findViewById(R.id.tvCodMaterial)
         tvNombreMaterial=item.findViewById(R.id.tvNomMaterial)
@@ -26,5 +28,8 @@ class ViewMaterial(item: View): RecyclerView.ViewHolder(item) {
         btnSumar=item.findViewById(R.id.btnSumar)
         btnRestar=item.findViewById(R.id.btnRestar)
         btnElegir=item.findViewById(R.id.btnElegir)
+
+        tvCantidadMaterial=item.findViewById(R.id.tvCantidadMaterial)
+
     }
 }
