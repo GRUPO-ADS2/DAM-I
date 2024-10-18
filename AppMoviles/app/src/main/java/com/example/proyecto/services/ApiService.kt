@@ -1,5 +1,7 @@
 package com.example.proyecto.services
 
+import com.example.proyecto.dto.PresDTO
+import com.example.proyecto.dto.SoliDTO
 import com.example.proyecto.entidad.Alumno
 import com.example.proyecto.entidad.Material
 import com.example.proyecto.entidad.Penalizacion
@@ -31,7 +33,7 @@ interface ApiService {
     @GET("/solicitud/{id}")
     fun findSolicitudById(@Path("id") idsolicitud: Int): Call<Solicitud>
     @POST("/solicitud")
-    fun registrarSolicitud(@Body bean:Solicitud):Call<Void>
+    fun registrarSolicitud(@Body bean:SoliDTO):Call<Void>
     @PUT("/solicitud/{id}")
     fun actualizarEstadoSolicitud(@Path("id") idsolicitud:Int):Call<Void>
     @DELETE("/solicitud/{id}")
@@ -44,7 +46,7 @@ interface ApiService {
     @GET("/prestamo/{id}")
     fun findPrestamoById(@Path("id") idPrestamo: Int): Call<Prestamo>
     @POST("/prestamo")
-    fun registrarPrestamo(@Body bean:Prestamo):Call<Void>
+    fun registrarPrestamo(@Body bean:PresDTO):Call<Void>
     @PUT("/prestamo/{id}")
     fun actualizarPrestamo(@Path("id") idPrestamo:Int):Call<Void>
     @DELETE("/prestamo/{id}")

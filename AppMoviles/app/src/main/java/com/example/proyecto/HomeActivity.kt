@@ -63,7 +63,7 @@ class HomeActivity : AppCompatActivity(){
             builder.setMessage("Puedes regresar")
 
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                SessionManager.clearUser(this) // Limpiar la sesión del usuario
+                SessionManager.clearUser(this)
                 Toast.makeText(this, "Chau", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

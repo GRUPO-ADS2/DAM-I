@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Nombre de Usuario o Contraseña incorrectas", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -65,7 +65,7 @@ class RegistrarActivity : AppCompatActivity() {
                 val solicitudes = response.body()
                 if (solicitudes != null) {
                     val adaptador = SolicitudAdapter(solicitudes)
-                    rvPrestamos.layoutManager = LinearLayoutManager(this@RegistrarActivity)  // Usamos el contexto de la actividad
+                    rvPrestamos.layoutManager = LinearLayoutManager(this@RegistrarActivity)
                     rvPrestamos.adapter = adaptador
                 } else {
                     showAlert("No se encontraron solicitudes.")

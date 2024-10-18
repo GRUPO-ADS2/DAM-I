@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.R
+import com.example.proyecto.dto.SoliDTO
 import com.example.proyecto.entidad.Alumno
 import com.example.proyecto.entidad.Material
 import com.example.proyecto.entidad.Solicitud
@@ -105,17 +106,16 @@ class MaterialAdapter(var data:List<Material>): RecyclerView.Adapter<ViewMateria
             return
         }
 
-        val solicitud = Solicitud(
-            idSolicitud = 0, // La base de datos asignará el ID automáticamente
-            cantidad = cantidadSeleccionada,
-            estado = "Generado", // Asumiendo "Generado" como estado inicial
-            material = material,
-            alumno = alumno
+        // Crear una instancia de SoliDTO
+        val solicitudDTO = SoliDTO(
+            alumnoCodUsuario = alumno.usuarioCodUsuario,
+            materialCod = material.codMaterial,
+            cantidad = cantidadSeleccionada
         )
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = apiService.registrarSolicitud(solicitud).execute()
+                val response = apiService.registrarSolicitud(solicitudDTO).execute()
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(context, "Solicitud registrada con éxito", Toast.LENGTH_SHORT).show()
