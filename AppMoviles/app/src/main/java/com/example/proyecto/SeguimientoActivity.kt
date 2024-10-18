@@ -11,8 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.adaptador.PrestamoAdapter
-import com.example.proyecto.adaptador.PenalizacionAdapter
-import com.example.proyecto.entidad.Penalizacion
 import com.example.proyecto.entidad.Prestamo
 import com.example.proyecto.services.ApiService
 import com.example.proyecto.utils.ApiUtils

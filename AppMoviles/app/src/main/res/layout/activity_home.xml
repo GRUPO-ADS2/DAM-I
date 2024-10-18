@@ -8,7 +8,9 @@
         android:id="@+id/r4ureouceglw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/main"
@@ -125,6 +127,32 @@
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/botonINI"
                 android:text="REGISTRAR"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/rjucwwgebahaaaa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginBottom="49dp"
+                android:text="Mira tus penalizaciones"
+                android:textColor="#273330"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnPene"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/botonINI"
+                android:text="PENALIZACIONES"
                 android:textColor="#FFFFFF"
                 android:textColorLink="#FFFFFF"
                 android:textStyle="bold"

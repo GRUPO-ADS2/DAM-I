@@ -1,5 +1,6 @@
 package com.example.proyecto.services
 
+import com.example.proyecto.dto.PenaDTO
 import com.example.proyecto.dto.PresDTO
 import com.example.proyecto.dto.SoliDTO
 import com.example.proyecto.entidad.Alumno
@@ -63,7 +64,7 @@ interface ApiService {
     @GET("/penalizacion/{id}")
     fun findPenalizacionById(@Path("id") idPenalizacion: Int): Call<Penalizacion>
     @POST("/penalizacion")
-    fun registrarPenalizacion(@Body bean:Penalizacion):Call<Void>
+    fun registrarPenalizacion(@Body bean:PenaDTO):Call<Void>
     @PUT("/penalizacion/{id}")
     fun actualizarPenalizacion(@Path("id") idPenalizacion:Int):Call<Void>
     @DELETE("/penalizacion/{id}")

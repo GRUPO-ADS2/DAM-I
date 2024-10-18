@@ -16,10 +16,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.util.Date
 
 class SolicitudAdapter(var data: List<Solicitud>) : RecyclerView.Adapter<ViewSolicitud>() {
 
@@ -47,16 +43,10 @@ class SolicitudAdapter(var data: List<Solicitud>) : RecyclerView.Adapter<ViewSol
         }
     }
 
-
     private fun aceptarSolicitud(context: Context, solicitud: Solicitud) {
-        val fechaPrestamo = Date()
-        val localDateTime = Instant.ofEpochMilli(fechaPrestamo.time)
-            .atZone(ZoneId.systemDefault())
-            .toLocalDateTime()
 
         val presDTO = PresDTO(
-            solicitudId = solicitud.idSolicitud,
-            fechaPrestamo = localDateTime
+            solicitudId = solicitud.idSolicitud
         )
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -73,6 +63,7 @@ class SolicitudAdapter(var data: List<Solicitud>) : RecyclerView.Adapter<ViewSol
                 }
             } catch (e: Exception) {
                 Log.e("NETWORK_ERROR", "Error de conexión: ${e.localizedMessage}")
+                e.printStackTrace()  // Print the full stack trace for more details
                 Toast.makeText(context, "Error de conexión: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
         }

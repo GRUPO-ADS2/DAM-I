@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity(){
     private lateinit var btnSol: Button
     private lateinit var btnSeg: Button
     private lateinit var btnReg: Button
+    private lateinit var btnPene: Button
     private lateinit var btnUser: Button
     private lateinit var tvHolaUsu: TextView
 
@@ -34,6 +35,7 @@ class HomeActivity : AppCompatActivity(){
         btnSol=findViewById(R.id.btnSol)
         btnSeg=findViewById(R.id.btnSeg)
         btnReg=findViewById(R.id.btnReg)
+        btnPene=findViewById(R.id.btnPene)
         btnUser=findViewById(R.id.btnUser)
         tvHolaUsu = findViewById(R.id.tvHolaUsuario)
 
@@ -55,6 +57,10 @@ class HomeActivity : AppCompatActivity(){
         }
         btnReg.setOnClickListener {
             var intent= Intent(this,RegistrarActivity::class.java)
+            startActivity(intent)
+        }
+        btnPene.setOnClickListener {
+            var intent= Intent(this,PenalizacionActivity::class.java)
             startActivity(intent)
         }
         btnUser.setOnClickListener {

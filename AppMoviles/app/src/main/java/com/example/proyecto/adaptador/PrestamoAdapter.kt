@@ -1,16 +1,13 @@
 package com.example.proyecto.adaptador
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.R
-import com.example.proyecto.entidad.Alumno
-import com.example.proyecto.entidad.Material
-import com.example.proyecto.entidad.Penalizacion
+import com.example.proyecto.dto.PenaDTO
 import com.example.proyecto.entidad.Prestamo
-import com.example.proyecto.entidad.Solicitud
-import com.example.proyecto.entidad.Usuario
 import com.example.proyecto.vistas.ViewPrestamo
 import com.example.proyecto.services.ApiService
 import com.example.proyecto.utils.ApiUtils
@@ -33,23 +30,20 @@ class PrestamoAdapter(var data: List<Prestamo>) : RecyclerView.Adapter<ViewPrest
         return data.size
     }
 
-
     override fun onBindViewHolder(holder: ViewPrestamo, position: Int) {
         val prestamo = data[position]
         holder.tvIdPre.text = prestamo.idPrestamo.toString()
         holder.tvAlumnoPre.text = prestamo.solicitud.alumno.nombresApellidos
+        holder.tvCodMaterial.text = prestamo.solicitud.material.codMaterial.toString()
+        holder.tvNombreMaterial.text = prestamo.solicitud.material.nombre
 
-        // Aquí eliminamos la parte de la hora de la fecha
         val fechaPrestamo = prestamo.fechaPrestamo.substringBefore("T")
         holder.tvFechaPre.text = fechaPrestamo
 
-        // Cambiar el texto y la funcionalidad del botón según el estado del préstamo
         if (prestamo.estado == "En Curso") {
-            // Parsear la fecha de prestamo
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val prestamoDate = dateFormat.parse(fechaPrestamo)
 
-            // Sumar 7 días a la fecha de prestamo
             val calendar = Calendar.getInstance()
             calendar.time = prestamoDate
             calendar.add(Calendar.DAY_OF_YEAR, 7)
@@ -57,25 +51,22 @@ class PrestamoAdapter(var data: List<Prestamo>) : RecyclerView.Adapter<ViewPrest
 
             holder.tvFechaDevPre.text = fechaDevReal
 
-            holder.btnActualizarPre.text = "Extender Plazo"
-            holder.btnActualizarPre.setOnClickListener {
-                // Lógica para extender el plazo del préstamo
+            holder.btnExtenderPlazo.visibility = View.VISIBLE
+            holder.btnExtenderPlazo.setOnClickListener {
                 extenderPlazo(prestamo.idPrestamo)
             }
-        } else if (prestamo.estado == "Penalizado") {
-            val fechaDevReal = prestamo.fechaDevReal?.substringBefore("T") ?: "No devuelto"
-            holder.tvFechaDevPre.text = fechaDevReal
 
-            holder.btnActualizarPre.text = "Penalizar"
-            holder.btnActualizarPre.setOnClickListener {
-                // Lógica para penalizar el préstamo
+            holder.btnPenalizar.visibility = View.VISIBLE
+            holder.btnPenalizar.setOnClickListener {
                 penalizarPrestamo(prestamo.idPrestamo)
             }
+        } else {
+            holder.btnExtenderPlazo.visibility = View.GONE
+            holder.btnPenalizar.visibility = View.VISIBLE
         }
     }
 
     private fun extenderPlazo(idPrestamo: Int) {
-        // Lógica para extender el plazo del préstamo
         apiService.actualizarPrestamo(idPrestamo).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
@@ -92,32 +83,15 @@ class PrestamoAdapter(var data: List<Prestamo>) : RecyclerView.Adapter<ViewPrest
     }
 
     private fun penalizarPrestamo(idPrestamo: Int) {
-        // Obtener la fecha actual usando Calendar
         val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd" )
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = dateFormat.format(calendar.time)
 
-        // Crear un objeto Penalizacion
-        val penalizacion = Penalizacion(
-            idPenalizacion = 0, // Asumiendo que el ID es autogenerado
-            fechaPenalizacion = currentDate,
+        val penalizacion = PenaDTO(
+            prestamoId = idPrestamo,
             descripcion = "Penalización por retraso",
-            prestamo = Prestamo(
-                idPrestamo = idPrestamo,
-                fechaPrestamo = "", // Reemplazar con la fecha real si es necesario
-                estado = "Penalizado",
-                fechaDevReal = null,
-                solicitud = Solicitud(
-                    idSolicitud = 0, // Reemplazar con datos reales
-                    cantidad = 0, // Reemplazar con datos reales
-                    estado = "",
-                    material = Material(0, "", "", 0, ""),
-                    alumno = Alumno(0, "", "", 0, Usuario(0, "", ""))
-                )
-            )
         )
 
-        // Llamar a la API para registrar la penalización
         apiService.registrarPenalizacion(penalizacion).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {

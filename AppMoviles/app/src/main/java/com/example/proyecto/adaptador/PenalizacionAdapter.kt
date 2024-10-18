@@ -23,13 +23,8 @@ class PenalizacionAdapter(var data:List<Penalizacion>): RecyclerView.Adapter<Vie
 
         // Remove the time part from the date string
         val fechaPrestamoPenalizacion = penalizacion.fechaPenalizacion.substringBefore("T")
-        holder.tvFechaPrestamoPen.text = fechaPrestamoPenalizacion
+        holder.tvFechaPenalizacion.text = fechaPrestamoPenalizacion
 
-        val fechaDevRealPenalizacion = penalizacion.prestamo.fechaDevReal?.substringBefore("T") ?: "No devuelto"
-        holder.tvFechaDevPrestamoPen.text = fechaDevRealPenalizacion
 
-        holder.btnPenalizarPrestamo.setOnClickListener {
-            // Logic to update the loan
-        }
     }
 }
