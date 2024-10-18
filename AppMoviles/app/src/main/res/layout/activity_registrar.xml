@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="17dp"
                     android:layout_marginBottom="32dp"
-                    android:text="Elije préstamo a aceptar :)"
+                    android:text="Elije una solicitud a aceptar :)"
                     android:textColor="#273330"
                     android:textSize="16sp" />
 

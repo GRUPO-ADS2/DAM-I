@@ -4,12 +4,14 @@ import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto.utils.SessionManager
 
 class HomeActivity : AppCompatActivity(){
 
@@ -17,6 +19,7 @@ class HomeActivity : AppCompatActivity(){
     private lateinit var btnSeg: Button
     private lateinit var btnReg: Button
     private lateinit var btnUser: Button
+    private lateinit var tvHolaUsu: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,15 @@ class HomeActivity : AppCompatActivity(){
         btnSeg=findViewById(R.id.btnSeg)
         btnReg=findViewById(R.id.btnReg)
         btnUser=findViewById(R.id.btnUser)
+        tvHolaUsu = findViewById(R.id.tvHolaUsuario)
+
+        // Get the user from SessionManager
+        val alumno = SessionManager.getUser(this)
+        if (alumno != null) {
+            tvHolaUsu.text = "Hola, ${alumno.nombresApellidos}!"
+        } else {
+            tvHolaUsu.text = "Hola, Usuario!"
+        }
 
         btnSol.setOnClickListener {
             var intent= Intent(this,SolicitudActivity::class.java)
@@ -51,17 +63,16 @@ class HomeActivity : AppCompatActivity(){
             builder.setMessage("Puedes regresar")
 
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                    Toast.makeText(this,"Chau", Toast.LENGTH_LONG)
-                    var intent=Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                SessionManager.clearUser(this) // Limpiar la sesión del usuario
+                Toast.makeText(this, "Chau", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
 
             builder.setNegativeButton(android.R.string.no) { dialog, which ->
-                Toast.makeText(applicationContext,
-                    android.R.string.no, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, android.R.string.no, Toast.LENGTH_SHORT).show()
             }
             builder.show()
-
         }
     }
 }

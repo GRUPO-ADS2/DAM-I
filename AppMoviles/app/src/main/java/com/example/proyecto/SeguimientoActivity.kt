@@ -61,15 +61,23 @@ class SeguimientoActivity : AppCompatActivity() {
         dialog.show()
     }
 
+
     fun listado() {
         // Llamada para listar los préstamos
         apiServices.findAllPrestamos().enqueue(object : Callback<List<Prestamo>> {
             override fun onResponse(call: Call<List<Prestamo>>, response: Response<List<Prestamo>>) {
-                val prestamo = response.body()
-                if (prestamo != null) {
-                    val adaptador = PrestamoAdapter(prestamo)
+                val prestamos = response.body()
+                if (prestamos != null) {
+                    val vigentes = prestamos.filter { it.estado == "En Curso" }
+                    val penalizados = prestamos.filter { it.estado == "Penalizado" }
+
+                    val adaptadorVigentes = PrestamoAdapter(vigentes)
                     rvVigentes.layoutManager = LinearLayoutManager(this@SeguimientoActivity)
-                    rvVigentes.adapter = adaptador
+                    rvVigentes.adapter = adaptadorVigentes
+
+                    val adaptadorPenalizados = PrestamoAdapter(penalizados)
+                    rvNoVigentes.layoutManager = LinearLayoutManager(this@SeguimientoActivity)
+                    rvNoVigentes.adapter = adaptadorPenalizados
                 } else {
                     showAlert("No se encontraron préstamos.")
                 }
@@ -77,24 +85,6 @@ class SeguimientoActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<Prestamo>>, t: Throwable) {
                 showAlert("Error de conexión al cargar préstamos: ${t.localizedMessage}")
-            }
-        })
-
-        // Llamada para listar las penalizaciones
-        apiServices.findAllPenalizaciones().enqueue(object : Callback<List<Penalizacion>> {
-            override fun onResponse(call: Call<List<Penalizacion>>, response: Response<List<Penalizacion>>) {
-                val penalizaciones = response.body()
-                if (penalizaciones != null) {
-                    val adaptadorPenalizacion = PenalizacionAdapter(penalizaciones)
-                    rvNoVigentes.layoutManager = LinearLayoutManager(this@SeguimientoActivity)
-                    rvNoVigentes.adapter = adaptadorPenalizacion
-                } else {
-                    showAlert("No se encontraron penalizaciones.")
-                }
-            }
-
-            override fun onFailure(call: Call<List<Penalizacion>>, t: Throwable) {
-                showAlert("Error de conexión al cargar penalizaciones: ${t.localizedMessage}")
             }
         })
     }
