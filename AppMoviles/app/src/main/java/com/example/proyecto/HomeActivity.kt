@@ -3,6 +3,7 @@ package com.example.proyecto
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,8 @@ class HomeActivity : AppCompatActivity(){
     private lateinit var btnPene: Button
     private lateinit var btnUser: Button
     private lateinit var tvHolaUsu: TextView
+    private lateinit var tvPEEE: TextView
+    private lateinit var tvREEE: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +41,31 @@ class HomeActivity : AppCompatActivity(){
         btnPene=findViewById(R.id.btnPene)
         btnUser=findViewById(R.id.btnUser)
         tvHolaUsu = findViewById(R.id.tvHolaUsuario)
+        tvREEE = findViewById(R.id.tvRegistrarprestamo)
+        tvPEEE = findViewById(R.id.tvPenaliuzacionesverlaputama)
+
+
 
         // Get the user from SessionManager
         val alumno = SessionManager.getUser(this)
         if (alumno != null) {
             tvHolaUsu.text = "Hola, ${alumno.nombresApellidos}!"
+
+            // Check if the user is admin
+            if (alumno.usuarioCodUsuario == 3 && alumno.usuario.role == "admin") {
+                // Admin user, show all buttons
+                btnReg.visibility = View.VISIBLE
+                btnPene.visibility = View.VISIBLE
+                tvREEE.visibility = View.VISIBLE
+                tvPEEE.visibility = View.VISIBLE
+            } else {
+                // Regular user, hide admin buttons
+                btnReg.visibility = View.GONE
+                btnPene.visibility = View.GONE
+                tvREEE.visibility = View.GONE
+                tvPEEE.visibility = View.GONE
+            }
+
         } else {
             tvHolaUsu.text = "Hola, Usuario!"
         }

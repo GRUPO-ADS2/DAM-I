@@ -1,11 +1,13 @@
 package com.example.proyecto.adaptador
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyecto.HomeActivity
 import com.example.proyecto.R
 import com.example.proyecto.dto.PresDTO
 import com.example.proyecto.entidad.Solicitud
@@ -56,6 +58,9 @@ class SolicitudAdapter(var data: List<Solicitud>) : RecyclerView.Adapter<ViewSol
                 }
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Solicitud aceptada con éxito", Toast.LENGTH_SHORT).show()
+                    // Redirigir al HomeActivity
+                    val intent = Intent(context, HomeActivity::class.java)
+                    context.startActivity(intent)
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Log.e("API_ERROR", "Error al aceptar la solicitud: $errorBody")

@@ -14,13 +14,14 @@ import com.example.proyecto.adaptador.PrestamoAdapter
 import com.example.proyecto.entidad.Prestamo
 import com.example.proyecto.services.ApiService
 import com.example.proyecto.utils.ApiUtils
+import com.example.proyecto.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SeguimientoActivity : AppCompatActivity() {
 
-    private lateinit var buttonVol:Button
+    private lateinit var buttonVol: Button
     private lateinit var rvVigentes: RecyclerView
     private lateinit var rvNoVigentes: RecyclerView
 
@@ -36,20 +37,20 @@ class SeguimientoActivity : AppCompatActivity() {
             insets
         }
 
-        buttonVol=findViewById(R.id.buttonVol)
-        rvVigentes=findViewById(R.id.rvVigentes)
-        rvNoVigentes=findViewById(R.id.rvNoVigentes)
+        buttonVol = findViewById(R.id.buttonVol)
+        rvVigentes = findViewById(R.id.rvVigentes)
+        rvNoVigentes = findViewById(R.id.rvNoVigentes)
 
         apiServices = ApiUtils.getAPIService()
 
         listado()
 
         buttonVol.setOnClickListener {
-            var intent= Intent(this,HomeActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
     }
+
     fun showAlert(mensaje: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("SISTEMA")
@@ -59,21 +60,31 @@ class SeguimientoActivity : AppCompatActivity() {
         dialog.show()
     }
 
-
     fun listado() {
+        // Get the logged-in user from SessionManager
+        val alumno = SessionManager.getUser(this)
+
         // Llamada para listar los préstamos
         apiServices.findAllPrestamos().enqueue(object : Callback<List<Prestamo>> {
             override fun onResponse(call: Call<List<Prestamo>>, response: Response<List<Prestamo>>) {
                 val prestamos = response.body()
                 if (prestamos != null) {
-                    val vigentes = prestamos.filter { it.estado == "En Curso" }
-                    val penalizados = prestamos.filter { it.estado == "Penalizado" }
+                    val filteredPrestamos = if (alumno != null && alumno.usuarioCodUsuario == 3 && alumno.usuario.role == "admin") {
+                        // Admin user, show all loans
+                        prestamos
+                    } else {
+                        // Regular user, show only their loans
+                        prestamos.filter { it.solicitud.alumno.nombresApellidos == alumno?.nombresApellidos }
+                    }
 
-                    val adaptadorVigentes = PrestamoAdapter(vigentes)
+                    val vigentes = filteredPrestamos.filter { it.estado == "En Curso" }
+                    val penalizados = filteredPrestamos.filter { it.estado == "Penalizado" }
+
+                    val adaptadorVigentes = PrestamoAdapter(this@SeguimientoActivity, vigentes)
                     rvVigentes.layoutManager = LinearLayoutManager(this@SeguimientoActivity)
                     rvVigentes.adapter = adaptadorVigentes
 
-                    val adaptadorPenalizados = PrestamoAdapter(penalizados)
+                    val adaptadorPenalizados = PrestamoAdapter(this@SeguimientoActivity, penalizados)
                     rvNoVigentes.layoutManager = LinearLayoutManager(this@SeguimientoActivity)
                     rvNoVigentes.adapter = adaptadorPenalizados
                 } else {

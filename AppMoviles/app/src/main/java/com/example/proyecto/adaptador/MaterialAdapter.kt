@@ -1,12 +1,14 @@
 package com.example.proyecto.adaptador
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyecto.HomeActivity
 import com.example.proyecto.R
 import com.example.proyecto.dto.SoliDTO
 import com.example.proyecto.entidad.Alumno
@@ -119,6 +121,11 @@ class MaterialAdapter(var data:List<Material>): RecyclerView.Adapter<ViewMateria
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(context, "Solicitud registrada con éxito", Toast.LENGTH_SHORT).show()
+
+                        // Redirigir al HomeActivity
+                        val intent = Intent(context, HomeActivity::class.java)
+                        context.startActivity(intent)
+
                     } else {
                         Log.e("API_ERROR", "Error al registrar la solicitud: ${response.errorBody()?.string()}")
                         Toast.makeText(context, "Error al registrar la solicitud", Toast.LENGTH_SHORT).show()
