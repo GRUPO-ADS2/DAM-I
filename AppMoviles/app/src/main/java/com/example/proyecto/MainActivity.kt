@@ -2,6 +2,7 @@ package com.example.proyecto
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,7 @@ import com.example.proyecto.services.ApiService
 import com.example.proyecto.utils.ApiUtils
 import com.example.proyecto.utils.SessionManager
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,6 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         // Fetch users from the database
         fetchAlumnos()
+
+        // Inside onCreate method of MainActivity
+        val intent = Intent(this, FirebaseTokenService::class.java)
+        startService(intent)
 
         button.setOnClickListener {
             val username = txtUsuario.text.toString()
