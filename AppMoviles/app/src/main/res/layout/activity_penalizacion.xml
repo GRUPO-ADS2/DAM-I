@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    >
 
 
     <LinearLayout
@@ -14,6 +16,7 @@
             android:id="@+id/rj88eouwwymk"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="#FFFFFF"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/main"
@@ -31,16 +34,17 @@
                     android:layout_marginBottom="35dp"
                     android:orientation="vertical">
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/rak6g0alq25c"
-                    android:textColor="#273330"
-                    android:textSize="24sp"
-                    android:layout_marginBottom="34dp"
-                    android:layout_marginStart="100dp"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="PENalizacionEs"
-                    />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginBottom="34dp"
+                    android:text="Penalizaciones"
+                    android:textColor="#273330"
+                    android:textSize="24sp" />
+
                 <TextView
                     android:id="@+id/rukm6m3o8uea"
                     android:textColor="#273330"
@@ -49,7 +53,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Mira tu penalización sanogil"
+                    android:text="Mira tu penalización aquí :)"
                     />
 
                 <androidx.recyclerview.widget.RecyclerView

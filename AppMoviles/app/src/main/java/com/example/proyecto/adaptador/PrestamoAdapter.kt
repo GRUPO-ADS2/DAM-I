@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.HomeActivity
@@ -48,48 +47,66 @@ class PrestamoAdapter(private val context: Context, var data: List<Prestamo>) : 
         val fechaPrestamo = prestamo.fechaPrestamo.substringBefore("T")
         holder.tvFechaPre.text = fechaPrestamo
 
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val prestamoDate = dateFormat.parse(fechaPrestamo)
+
+        val calendar = Calendar.getInstance()
+        calendar.time = prestamoDate
+        calendar.add(Calendar.DAY_OF_YEAR, 7)
+        val fechaDevReal = dateFormat.format(calendar.time)
+
+        holder.tvFechaDevPre.text = fechaDevReal
+
         if (prestamo.estado == "En Curso") {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-            val prestamoDate = dateFormat.parse(fechaPrestamo)
-
-            val calendar = Calendar.getInstance()
-            calendar.time = prestamoDate
-            calendar.add(Calendar.DAY_OF_YEAR, 7)
-            val fechaDevReal = dateFormat.format(calendar.time)
-
-            holder.tvFechaDevPre.text = fechaDevReal
-
-            holder.btnExtenderPlazo.visibility = View.VISIBLE
-            holder.btnExtenderPlazo.setOnClickListener {
-                extenderPlazo(prestamo.idPrestamo)
+            holder.btnActualizar.visibility = View.VISIBLE
+            holder.btnActualizar.setOnClickListener {
+                showActualizarDialog(prestamo.idPrestamo)
             }
         } else {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-            val prestamoDate = dateFormat.parse(fechaPrestamo)
-
-            val calendar = Calendar.getInstance()
-            calendar.time = prestamoDate
-            calendar.add(Calendar.DAY_OF_YEAR, 7)
-            val fechaDevReal = dateFormat.format(calendar.time)
-
-            holder.tvFechaDevPre.text = fechaDevReal
-            holder.btnExtenderPlazo.visibility = View.GONE
-
-
+            val alumno = SessionManager.getUser(context)
+            if (alumno != null && alumno.usuarioCodUsuario == 3 && alumno.usuario.role == "admin") {
+                holder.btnActualizar.visibility = View.VISIBLE
+                holder.btnActualizar.setOnClickListener {
+                    showActualizarDialog(prestamo.idPrestamo)
+                }
+            } else
+            holder.btnActualizar.visibility = View.GONE
         }
+    }
 
-        // Get the logged-in user from SessionManager
+    private fun showActualizarDialog(idPrestamo: Int) {
         val alumno = SessionManager.getUser(context)
-        if (alumno != null && alumno.usuarioCodUsuario == 3 && alumno.usuario.role == "admin") {
-            // Admin user, show the penalize button
-            holder.btnPenalizar.visibility = View.VISIBLE
-            holder.btnPenalizar.setOnClickListener {
-                penalizarPrestamo(prestamo.idPrestamo)
-            }
-        } else {
-            // Regular user, hide the penalize button
-            holder.btnPenalizar.visibility = View.GONE
+        val options =
+            if (alumno != null && alumno.usuarioCodUsuario == 3 && alumno.usuario.role == "admin") {
+                arrayOf("Extender Plazo", "Marcar como Devuelto", "Penalizar")
+            } else {
+                arrayOf("Extender Plazo")
         }
+
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Actualizar Préstamo")
+        builder.setItems(options) { dialog, which ->
+            when (options[which]) {
+                "Extender Plazo" -> showConfirmDialog("Extender Plazo", "¿Estás seguro de que deseas extender el plazo?", { extenderPlazo(idPrestamo) })
+                "Marcar como Devuelto" -> showConfirmDialog("Registrar Devolución", "¿Estás seguro de que deseas registrar la devolución?", { registrarDevolucion(idPrestamo) })
+                "Penalizar" -> penalizarPrestamo(idPrestamo)
+
+            }
+        }
+        builder.show()
+    }
+
+    private fun showConfirmDialog(title: String, message: String, onConfirm: () -> Unit) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Sí") { dialog, _ ->
+            onConfirm()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     private fun extenderPlazo(idPrestamo: Int) {
@@ -113,6 +130,28 @@ class PrestamoAdapter(private val context: Context, var data: List<Prestamo>) : 
                 // Manejar error de conexión
                 Log.e("NETWORK_ERROR", "Error de conexión: ${t.localizedMessage}")
                 t.printStackTrace()  // Imprimir el stack trace para más detalles
+                Toast.makeText(context, "Error de conexión: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun registrarDevolucion(idPrestamo: Int) {
+        apiService.registrarDevolucion(idPrestamo).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "Devolución registrada con éxito", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, HomeActivity::class.java)
+                    context.startActivity(intent)
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("API_ERROR", "Error al registrar la devolución: $errorBody")
+                    Toast.makeText(context, "Error al registrar la devolución: $errorBody", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("NETWORK_ERROR", "Error de conexión: ${t.localizedMessage}")
+                t.printStackTrace()
                 Toast.makeText(context, "Error de conexión: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
         })

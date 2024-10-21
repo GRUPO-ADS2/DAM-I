@@ -59,12 +59,15 @@ class RegistrarActivity : AppCompatActivity() {
         dialog.show()
     }
 
+
     fun listado() {
         apiServices.findAllSolicitudes().enqueue(object : Callback<List<Solicitud>> {
             override fun onResponse(call: Call<List<Solicitud>>, response: Response<List<Solicitud>>) {
                 val solicitudes = response.body()
                 if (solicitudes != null) {
-                    val adaptador = SolicitudAdapter(solicitudes)
+                    // Filter the solicitudes to only include those that are accepted and do not have a linked loan
+                    val filteredSolicitudes = solicitudes.filter { it.estado == "Generado"  }
+                    val adaptador = SolicitudAdapter(filteredSolicitudes)
                     rvPrestamos.layoutManager = LinearLayoutManager(this@RegistrarActivity)
                     rvPrestamos.adapter = adaptador
                 } else {

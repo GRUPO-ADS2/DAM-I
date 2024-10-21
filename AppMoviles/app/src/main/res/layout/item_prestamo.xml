@@ -121,7 +121,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fecha de retorno: "
+                    android:text="Fecha P. Devolución: "
                     android:textColor="@color/black" />
 
                 <TextView
@@ -135,36 +135,17 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/btnActualizar"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_gravity="center_vertical"
+            android:minWidth="60dip"
+            android:text="Actualizar"
+            android:textColor="@color/botonINI"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/btnExtenderPlazo"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:minWidth="60dip"
-                android:text="Extender Plazo"
-                android:textColor="@color/botonINI"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnPenalizar"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:minWidth="60dip"
-                android:text="Penalizar"
-                android:textColor="@color/botonINI"
-                android:textSize="12sp"
-                android:visibility="gone" />
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -12,8 +12,7 @@ class ViewPrestamo(item: View): RecyclerView.ViewHolder(item) {
     var tvAlumnoPre: TextView
     var tvFechaPre: TextView
     var tvFechaDevPre: TextView
-    var btnExtenderPlazo: Button
-    var btnPenalizar: Button
+    var btnActualizar: Button
 
     var tvCodMaterial: TextView
     var tvNombreMaterial: TextView
@@ -24,8 +23,7 @@ class ViewPrestamo(item: View): RecyclerView.ViewHolder(item) {
         tvFechaPre=item.findViewById(R.id.tvFechaPrestamo)
         tvFechaDevPre=item.findViewById(R.id.tvFechaDevPrestamo)
 
-        btnExtenderPlazo=item.findViewById(R.id.btnExtenderPlazo)
-        btnPenalizar=item.findViewById(R.id.btnPenalizar)
+        btnActualizar=item.findViewById(R.id.btnActualizar)
 
         tvCodMaterial=item.findViewById(R.id.tvCodMaterial)
         tvNombreMaterial=item.findViewById(R.id.tvNomMaterial)
