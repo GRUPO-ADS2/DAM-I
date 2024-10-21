@@ -1,0 +1,28 @@
+@GET 20.206.205.20:8080/materiales 
+@GET 20.206.205.20:8080/alumnos
+
+Solicitudes
+@GET 20.206.205.20:8080/solicitudes
+@POST 20.206.205.20:8080/solicitud - Body : {
+    "alumnoCodUsuario" : 1,
+    "cantidad" : 1,
+    "materialCod" : 100001
+}
+@DELETE 20.206.205.20:8080/solicitud/1
+
+Prestamos
+@GET 20.206.205.20:8080/prestamos
+@POST 20.206.205.20:8080/prestamo - Body : {
+    "solicitudId" : 15
+}
+@PUT 20.206.205.20:8080/prestamo/15
+@POST 20.206.205.20:8080/devolucion/14
+@DELETE 20.206.205.20:8080/prestamo/1
+
+Penalizaciones
+@GET 20.206.205.20:8080/penalizaciones
+@POST 20.206.205.20:8080/penalizacion - Body : {
+    "prestamoId" : 16,
+    "descripcion" : "Rompieron la carátula del libro"
+}
+@DELETE 20.206.205.20:8080/penalizacion/1
