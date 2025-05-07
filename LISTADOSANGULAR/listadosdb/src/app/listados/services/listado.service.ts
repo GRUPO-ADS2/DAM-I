@@ -8,7 +8,7 @@ import { Penalizacion } from '../models/Penalizacion';
   providedIn: 'root'
 })
 export class ListadoService {
-  private urlBase:string = 'http://20.206.205.20:8080';
+  private urlBase:string = 'hhttps://prestamo-daw-i-7cqp.onrender.com';
   constructor(private http : HttpClient) { }
   
   listarSolicitudes(): Observable<Solicitud[]>{
